@@ -13,9 +13,6 @@ import type {
   MerchantBankListResponse,
   MerchantSessionUser,
   NotificationListResponse,
-  Reconciliation,
-  ReconciliationFilters,
-  ReconciliationWithDiscrepancies,
   TransactionWithRelations,
   Provider,
   Transaction,
@@ -242,35 +239,6 @@ export const transactionsApi = {
     request<TransactionDetails>(`admin/transactions/${id}`),
 };
 
-export const reconciliationApi = {
-  list: (filters?: ReconciliationFilters) => {
-    const params = new URLSearchParams();
-    if (filters?.type) params.set("type", filters.type);
-    if (filters?.status) params.set("status", filters.status);
-    if (filters?.merchantId != null)
-      params.set("merchantId", String(filters.merchantId));
-    if (filters?.providerId != null)
-      params.set("providerId", String(filters.providerId));
-    if (filters?.startDate) params.set("startDate", filters.startDate);
-    if (filters?.endDate) params.set("endDate", filters.endDate);
-    const qs = params.toString();
-    return request<Reconciliation[]>(
-      `admin/reconciliation${qs ? `?${qs}` : ""}`,
-    );
-  },
-  get: (id: number) =>
-    request<ReconciliationWithDiscrepancies>(`admin/reconciliation/${id}`),
-  resolveDiscrepancy: (
-    id: number,
-    resolutionNotes: string,
-    resolvedBy: number,
-  ) =>
-    request(`admin/reconciliation/discrepancies/${id}/resolve`, {
-      method: "POST",
-      body: JSON.stringify({ resolutionNotes, resolvedBy }),
-    }),
-};
-
 export const notificationsApi = {
   listMerchant: (params: { unreadOnly?: boolean; limit?: number } = {}) => {
     const search = new URLSearchParams();
@@ -319,6 +287,5 @@ export const goldpayApi = {
   providers: providersApi,
   transactions: transactionsApi,
   funding: fundingApi,
-  reconciliation: reconciliationApi,
   notifications: notificationsApi,
 };

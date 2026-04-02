@@ -101,27 +101,6 @@ export interface TransactionAttempt {
   attempted_at: string;
 }
 
-export interface Reconciliation {
-  id: number;
-  type: string;
-  status: string;
-  reconciliation_date: string;
-  merchant_id: number | null;
-  provider_id: number | null;
-  total_transactions: number;
-  total_amount: string;
-  succeeded_count: number;
-  succeeded_amount: string;
-  failed_count: number;
-  failed_amount: string;
-  pending_count: number;
-  pending_amount: string;
-  discrepancy_count: number;
-  notes: string | null;
-  created_at: string;
-  updated_at: string;
-}
-
 export interface PaginatedResponse<T> {
   data: T[];
   total: number;
@@ -166,15 +145,6 @@ export interface CreateTransactionBody {
   };
 }
 
-export interface ReconciliationFilters {
-  type?: string;
-  status?: string;
-  merchantId?: number;
-  providerId?: number;
-  startDate?: string;
-  endDate?: string;
-}
-
 /** Transaction with merchant & provider (admin list) */
 export interface TransactionWithRelations extends Transaction {
   merchant?: { id: number; name: string; email: string };
@@ -191,27 +161,6 @@ export interface AdminTransactionFilters {
   startDate?: string;
   endDate?: string;
   sandbox?: boolean;
-}
-
-export interface ReconciliationDiscrepancy {
-  id: number;
-  reconciliation_id: number;
-  transaction_id: number | null;
-  type: string;
-  status: string;
-  description: string;
-  expected_value: string | null;
-  actual_value: string | null;
-  resolution_notes: string | null;
-  resolved_at: string | null;
-  resolved_by: number | null;
-  created_at: string;
-}
-
-export interface ReconciliationWithDiscrepancies extends Reconciliation {
-  discrepancies?: ReconciliationDiscrepancy[];
-  merchant?: { id: number; name: string } | null;
-  provider?: { id: number; name: string; display_name: string } | null;
 }
 
 export interface AppNotification {

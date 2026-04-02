@@ -23,10 +23,6 @@ const PAGE_COPY = {
     title: "History",
     subtitle: "Review payment records and status changes",
   },
-  "/reconciliation": {
-    title: "Reconciliation",
-    subtitle: "Audit settlement totals and discrepancy handling",
-  },
   "/pages/settings": {
     title: "Settings",
     subtitle: "Manage your merchant profile and workspace preferences",

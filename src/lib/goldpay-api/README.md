@@ -23,7 +23,6 @@
 - `goldpayApi.merchants` — list, get, create, update, API keys, assign/remove provider
 - `goldpayApi.providers` — list, get
 - `goldpayApi.transactions` — get(id); list by merchant (backend may add admin list later)
-- `goldpayApi.reconciliation` — list, get, run merchant/provider/daily, resolve discrepancy
 
 ## Real-time updates
 

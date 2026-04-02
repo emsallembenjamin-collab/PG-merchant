@@ -6,7 +6,7 @@ const roleCopy = {
   admin: {
     badge: "Ops Control",
     headline: "Merchant and provider intelligence",
-    body: "Live visibility across routing, settlements, reconciliation, and operational risk.",
+    body: "Live visibility across routing, settlements, and operational risk.",
     metricA: "99.94%",
     metricALabel: "Success rate",
     metricB: "24/7",

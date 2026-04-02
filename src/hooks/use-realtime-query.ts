@@ -22,7 +22,7 @@ export interface UseRealtimeQueryResult<T> {
 /**
  * Fetches data and refetches on an interval (polling) for near–real-time updates
  * when the GoldPay server does not yet expose WebSockets/SSE.
- * Use for dashboard KPIs, transaction lists, and reconciliation status.
+ * Use for dashboard KPIs and transaction lists.
  */
 export function useRealtimeQuery<T>(
   queryKey: string,

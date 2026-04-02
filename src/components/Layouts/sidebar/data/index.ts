@@ -29,11 +29,6 @@ export const NAV_DATA = [
         items: [{ title: "Transaction History", url: "/history" }],
       },
       {
-        title: "Reconciliation",
-        icon: Icons.PieChart,
-        items: [{ title: "Reconciliation", url: "/reconciliation" }],
-      },
-      {
         title: "Settings",
         icon: Icons.Alphabet,
         items: [{ title: "Settings", url: "/pages/settings" }],
