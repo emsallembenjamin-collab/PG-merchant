@@ -18,39 +18,8 @@ const config: Config = {
         current: "currentColor",
         transparent: "transparent",
         white: "#FFFFFF",
-        /** Brand — default `primary` maps to 500 */
-        primary: {
-          DEFAULT: "#5B6CFF",
-          500: "#5B6CFF",
-          600: "#4A5AF5",
-          700: "#3B4AE0",
-        },
-        /** Surfaces */
-        surface: {
-          main: "#F8F9FB",
-          card: "#FFFFFF",
-          soft: "#F1F3F7",
-        },
-        /** Borders */
-        line: {
-          DEFAULT: "#E5E7EB",
-          strong: "#D1D5DB",
-        },
-        /** Text hierarchy (use with `text-ink-*`) */
-        ink: {
-          DEFAULT: "#111827",
-          secondary: "#374151",
-          muted: "#6B7280",
-          disabled: "#9CA3AF",
-        },
-        /** Status */
-        status: {
-          success: "#10B981",
-          warning: "#F59E0B",
-          error: "#EF4444",
-          info: "#3B82F6",
-        },
-        stroke: "#E5E7EB",
+        primary: "#635BFF",
+        stroke: "#E9E1D5",
         "stroke-dark": "#223047",
         brand: {
           gold: "#D8A44D",
@@ -320,8 +289,8 @@ const config: Config = {
       boxShadow: {
         default: "0px 4px 7px 0px rgba(0, 0, 0, 0.14)",
         error: "0px 12px 34px 0px rgba(13, 10, 44, 0.05)",
-        card: "0px 8px 24px rgba(15, 23, 42, 0.06)",
-        "card-2": "0px 24px 60px rgba(15, 23, 42, 0.08)",
+        card: "0px 8px 24px rgba(162, 145, 118, 0.12)",
+        "card-2": "0px 24px 60px rgba(193, 181, 163, 0.22)",
         "card-3": "0px 2px 3px 0px rgba(183, 183, 183, 0.50)",
         "card-4": "0px 1px 3px 0px rgba(0, 0, 0, 0.12)",
         "card-5": "0px 1px 3px 0px rgba(0, 0, 0, 0.13)",

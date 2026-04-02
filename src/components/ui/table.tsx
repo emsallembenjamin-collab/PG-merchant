@@ -22,7 +22,7 @@ export function TableHeader({
   return (
     <thead
       className={cn(
-        "[&_tr]:border-b [&_tr]:border-line dark:[&_tr]:border-dark-3",
+        "[&_tr]:border-b [&_tr]:border-[#F0E7D9] dark:[&_tr]:border-dark-3",
         className,
       )}
       {...props}
@@ -52,7 +52,7 @@ export function TableFooter({
   return (
     <tfoot
       className={cn(
-        "border-t border-line bg-surface-soft font-medium dark:border-dark-3 dark:bg-neutral-800/50 [&>tr]:last:border-b-0",
+        "border-t border-[#F0E7D9] bg-[#FBF7F2] font-medium dark:border-dark-3 dark:bg-neutral-800/50 [&>tr]:last:border-b-0",
         className,
       )}
       {...props}
@@ -82,7 +82,7 @@ export function TableHead({
   return (
     <th
       className={cn(
-        "h-12 px-4 text-left align-middle text-xs font-semibold uppercase tracking-[0.18em] text-ink-muted dark:text-neutral-400 [&:has([role=checkbox])]:pr-0",
+        "h-12 px-4 text-left align-middle text-xs font-semibold uppercase tracking-[0.18em] text-[#8A7A61] dark:text-neutral-400 [&:has([role=checkbox])]:pr-0",
         className,
       )}
       {...props}

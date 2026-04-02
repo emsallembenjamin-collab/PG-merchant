@@ -32,7 +32,7 @@ export function ApiAccessSection() {
     <ShowcaseSection title="API Access" className="!p-7">
       <div className="space-y-5">
         <div className="rounded-[20px] border border-[#E8DED0] bg-[#FCFAF7] p-4 dark:border-dark-3 dark:bg-dark-2">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-muted dark:text-dark-6">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#8A7A61] dark:text-dark-6">
             Authenticated Merchant
           </p>
           <p className="mt-2 text-base font-semibold text-dark dark:text-white">

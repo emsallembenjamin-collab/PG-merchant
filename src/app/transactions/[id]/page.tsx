@@ -244,7 +244,7 @@ export default function TransactionDetailPage() {
             </h3>
             <Table>
               <TableHeader>
-                <TableRow className="border-none bg-surface-soft dark:bg-dark-2">
+                <TableRow className="border-none bg-[#FBF7F2] dark:bg-dark-2">
                   <TableHead>ID</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead>Attempted at</TableHead>

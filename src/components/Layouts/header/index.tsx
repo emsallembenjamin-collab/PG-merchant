@@ -37,7 +37,7 @@ export function Header() {
 
   return (
     <header className="sticky top-4 z-30 px-4 md:px-6 2xl:px-10">
-      <div className="mx-auto flex w-full max-w-[1500px] items-center justify-between gap-4 rounded-[30px] border border-line bg-surface-card px-4 py-4 shadow-card-2 backdrop-blur-xl dark:border-dark-3/80 dark:bg-[#08111F]/90 md:px-6">
+      <div className="mx-auto flex w-full max-w-[1500px] items-center justify-between gap-4 rounded-[30px] border border-white/85 bg-white/88 px-4 py-4 shadow-card-2 backdrop-blur-xl dark:border-dark-3/80 dark:bg-[#08111F]/90 md:px-6">
         <button
           onClick={toggleSidebar}
           className="merchant-icon-button lg:hidden"
@@ -53,27 +53,27 @@ export function Header() {
         )}
 
         <div className="max-w-[19rem] max-xl:hidden">
-          <h1 className="text-[1.9rem] font-black leading-none tracking-[-0.045em] text-ink dark:text-white">
+          <h1 className="text-[1.9rem] font-black leading-none tracking-[-0.045em] text-[#151515] dark:text-white">
             {pageCopy.title}
           </h1>
-          <p className="mt-1.5 text-[13px] font-medium tracking-[-0.01em] text-ink-muted dark:text-dark-6">
+          <p className="mt-1.5 text-[13px] font-medium tracking-[-0.01em] text-[#AEA39A] dark:text-dark-6">
             {pageCopy.subtitle}
           </p>
         </div>
 
         <div className="hidden flex-1 items-center justify-center xl:flex">
-          <div className="flex min-w-[290px] items-center justify-between gap-4 rounded-full border border-line bg-surface-soft px-4 py-2 shadow-card dark:border-dark-3 dark:bg-dark-2">
+          <div className="flex min-w-[290px] items-center justify-between gap-4 rounded-full border border-[#ECE2D5] bg-[#FCF9F3] px-4 py-2 shadow-card dark:border-dark-3 dark:bg-dark-2">
             <div className="flex min-w-0 items-center gap-3">
-              <span className="grid size-8 shrink-0 place-items-center rounded-full bg-primary/10 text-[12px] font-bold text-primary">
+              <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#F9ECE0] text-[12px] font-bold text-[#E58A4A]">
                 $
               </span>
               <div className="min-w-0">
-                <p className="truncate text-[13px] font-semibold tracking-[-0.02em] text-ink-secondary dark:text-dark-6">
+                <p className="truncate text-[13px] font-semibold tracking-[-0.02em] text-[#8B7A68] dark:text-dark-6">
                   4902 •••• •••• 3300
                 </p>
               </div>
             </div>
-            <p className="shrink-0 text-[13px] font-bold tracking-[-0.03em] text-ink dark:text-white">
+            <p className="shrink-0 text-[13px] font-bold tracking-[-0.03em] text-[#1E1E1E] dark:text-white">
               $1,465,297
             </p>
           </div>
@@ -84,10 +84,10 @@ export function Header() {
             <input
               type="search"
               placeholder="Search transactions and history"
-              className="merchant-input h-12 rounded-full border-line bg-surface-soft pl-[50px] pr-5 text-[13px] font-medium shadow-card placeholder:text-ink-muted dark:border-dark-3 dark:bg-dark-2"
+              className="merchant-input h-12 rounded-full border-white/70 bg-[#FCF9F3] pl-[50px] pr-5 text-[13px] font-medium shadow-card placeholder:text-[#B4A79A] dark:border-dark-3 dark:bg-dark-2"
             />
 
-            <SearchIcon className="pointer-events-none absolute left-4 top-1/2 size-4.5 -translate-y-1/2 text-ink-muted max-[1015px]:size-5 dark:text-dark-6" />
+            <SearchIcon className="pointer-events-none absolute left-4 top-1/2 size-4.5 -translate-y-1/2 text-[#8A7A61] max-[1015px]:size-5 dark:text-dark-6" />
           </div>
 
           <ThemeToggleSwitch />

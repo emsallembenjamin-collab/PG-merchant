@@ -30,7 +30,7 @@ export function GoldPayHeroScene({ role }: GoldPayHeroSceneProps) {
     <div className="relative h-[280px] overflow-hidden rounded-[28px] border border-stroke/80 bg-white/75 p-6 shadow-2 backdrop-blur-xl dark:border-dark-3/80 dark:bg-[#08111F]/80">
       <div className="absolute inset-0 goldpay-mesh opacity-90" />
       <div className="goldpay-orb animate-goldpay-pulse left-[-2rem] top-[-2rem] h-28 w-28 bg-brand-gold/20 dark:bg-brand-gold/15" />
-      <div className="goldpay-orb animate-goldpay-drift bottom-[-1rem] right-[-1rem] h-32 w-32 bg-primary/12 dark:bg-primary/20" />
+      <div className="goldpay-orb animate-goldpay-drift bottom-[-1rem] right-[-1rem] h-32 w-32 bg-primary/15 dark:bg-primary/20" />
 
       <div className="relative z-10 flex h-full flex-col justify-between">
         <div className="max-w-[18rem]">

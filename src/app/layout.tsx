@@ -24,7 +24,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
         <Providers>
-          <NextTopLoader color="#5B6CFF" showSpinner={false} />
+          <NextTopLoader color="#5750F1" showSpinner={false} />
           <AppShell>{children}</AppShell>
         </Providers>
       </body>

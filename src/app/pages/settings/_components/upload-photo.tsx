@@ -31,7 +31,7 @@ export function UploadPhotoForm() {
           </div>
         </div>
 
-        <div className="relative mb-5.5 block w-full rounded-[24px] border border-dashed border-line-strong bg-surface-soft hover:border-primary dark:border-dark-3 dark:bg-dark-2 dark:hover:border-primary">
+        <div className="relative mb-5.5 block w-full rounded-[24px] border border-dashed border-[#DDCFBC] bg-[#FBF7F2] hover:border-primary dark:border-dark-3 dark:bg-dark-2 dark:hover:border-primary">
           <input
             type="file"
             name="profilePhoto"

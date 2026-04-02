@@ -27,7 +27,7 @@ export async function TopChannels({ className }: { className?: string }) {
 
       <Table>
         <TableHeader>
-          <TableRow className="border-none bg-surface-soft uppercase [&>th]:py-4 [&>th]:text-center dark:bg-dark-2">
+          <TableRow className="border-none bg-[#FBF7F2] uppercase [&>th]:py-4 [&>th]:text-center dark:bg-dark-2">
             <TableHead className="min-w-[120px] !text-left">Source</TableHead>
             <TableHead>Visitors</TableHead>
             <TableHead className="!text-right">Revenues</TableHead>

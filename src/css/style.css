@@ -10,7 +10,7 @@
   }
 
   body {
-    @apply bg-surface-main text-ink-secondary dark:bg-[#08111F] dark:text-dark-6;
+    @apply bg-[#F3EEE6] text-dark-4 dark:bg-[#08111F] dark:text-dark-6;
     font-feature-settings:
       "ss01" 1,
       "cv11" 1,
@@ -36,7 +36,7 @@
 
   button:hover:not(:disabled),
   button:focus-visible:not(:disabled) {
-    box-shadow: 0 14px 26px rgba(91, 108, 255, 0.14);
+    box-shadow: 0 14px 26px rgba(99, 91, 255, 0.12);
     transform: translateY(-1px);
   }
 
@@ -51,23 +51,23 @@
 
 @layer components {
   .merchant-card {
-    @apply rounded-[28px] border border-line bg-surface-card shadow-card-2 backdrop-blur-sm dark:border-dark-3/80 dark:bg-dark/90;
+    @apply rounded-[28px] border border-white/70 bg-white/90 shadow-card-2 backdrop-blur-sm dark:border-dark-3/80 dark:bg-dark/90;
   }
 
   .merchant-card-subtle {
-    @apply rounded-[24px] border border-line bg-surface-soft shadow-card dark:border-dark-3 dark:bg-dark-2;
+    @apply rounded-[24px] border border-[#ECE3D6] bg-[#FBF7F2] shadow-card dark:border-dark-3 dark:bg-dark-2;
   }
 
   .merchant-toolbar {
-    @apply rounded-[24px] border border-line bg-surface-card px-4 py-4 shadow-card backdrop-blur-sm dark:border-dark-3/80 dark:bg-dark/90 md:px-5;
+    @apply rounded-[24px] border border-white/70 bg-white/90 px-4 py-4 shadow-card backdrop-blur-sm dark:border-dark-3/80 dark:bg-dark/90 md:px-5;
   }
 
   .merchant-input {
-    @apply h-11.5 w-full rounded-2xl border border-line bg-[#FFFFFF] px-4 text-sm text-ink outline-none transition placeholder:text-ink-muted hover:border-line-strong focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:placeholder:text-dark-6 dark:focus:border-primary dark:focus:ring-primary/25;
+    @apply h-11.5 w-full rounded-2xl border border-[#E8DED0] bg-[#FCFAF7] px-4 text-sm text-dark outline-none transition placeholder:text-[#8A7A61] focus:border-primary focus:bg-white dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:placeholder:text-dark-6 dark:focus:border-primary;
   }
 
   .merchant-textarea {
-    @apply w-full rounded-2xl border border-line bg-[#FFFFFF] px-4 py-3 text-sm text-ink outline-none transition placeholder:text-ink-muted hover:border-line-strong focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:placeholder:text-dark-6 dark:focus:border-primary dark:focus:ring-primary/25;
+    @apply w-full rounded-2xl border border-[#E8DED0] bg-[#FCFAF7] px-4 py-3 text-sm text-dark outline-none transition placeholder:text-[#8A7A61] focus:border-primary focus:bg-white dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:placeholder:text-dark-6 dark:focus:border-primary;
   }
 
   .merchant-select {
@@ -75,15 +75,15 @@
   }
 
   .merchant-icon-button {
-    @apply grid size-11 place-items-center rounded-2xl border border-line bg-surface-card text-ink-muted shadow-card transition hover:border-line-strong hover:text-primary focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/20 dark:border-dark-3 dark:bg-dark-2 dark:text-dark-6;
+    @apply grid size-11 place-items-center rounded-2xl border border-[#E8DED0] bg-white/90 text-slate-500 shadow-card transition hover:border-[#D9CFC2] hover:text-primary focus-visible:border-primary dark:border-dark-3 dark:bg-dark-2 dark:text-dark-6;
   }
 
   .merchant-primary-button {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-card transition hover:bg-primary-600 active:bg-primary-700;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-card;
   }
 
   .merchant-secondary-button {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-surface-card px-5 py-2.5 text-sm font-semibold text-ink-secondary shadow-card transition hover:border-line-strong hover:bg-surface-soft;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-[#E8DED0] bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 shadow-card;
   }
 
   .merchant-status-pill {
@@ -91,32 +91,32 @@
   }
 
   .merchant-status-pill-success {
-    @apply bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300;
+    @apply bg-green-light-6 text-green-dark dark:bg-green/15 dark:text-green-light-3;
   }
 
   .merchant-status-pill-error {
-    @apply bg-red-50 text-red-700 dark:bg-red-500/15 dark:text-red-300;
+    @apply bg-red-light-6 text-red-dark dark:bg-red/15 dark:text-red-light-3;
   }
 
   .merchant-status-pill-warn {
-    @apply bg-amber-50 text-amber-800 dark:bg-amber-500/15 dark:text-amber-200;
+    @apply bg-yellow-light-4 text-yellow-dark-2 dark:bg-yellow-dark/20 dark:text-yellow-light;
   }
 
   .merchant-status-pill-neutral {
-    @apply bg-surface-soft text-ink-muted dark:bg-white/10 dark:text-dark-6;
+    @apply bg-slate-100 text-slate-600 dark:bg-white/10 dark:text-dark-6;
   }
 
   .merchant-label {
-    @apply mb-2 block text-sm font-medium text-ink-secondary dark:text-dark-6;
+    @apply mb-2 block text-sm font-medium text-dark-5 dark:text-dark-6;
   }
 }
 
 @layer utilities {
   .goldpay-shell {
     background:
-      radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 24%),
-      radial-gradient(circle at top right, rgba(91, 108, 255, 0.06), transparent 20%),
-      linear-gradient(180deg, #f8f9fb 0%, #f1f3f7 100%);
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.88), transparent 22%),
+      radial-gradient(circle at top right, rgba(246, 215, 134, 0.18), transparent 18%),
+      linear-gradient(180deg, #f6f2ea 0%, #f2ece3 100%);
     @apply relative min-h-screen dark:bg-[#08111F];
   }
 
@@ -127,8 +127,8 @@
   .goldpay-mesh {
     background-image:
       radial-gradient(circle at 18% 18%, rgba(216, 164, 77, 0.08), transparent 24%),
-      radial-gradient(circle at 82% 12%, rgba(91, 108, 255, 0.1), transparent 22%),
-      radial-gradient(circle at 50% 80%, rgba(74, 90, 245, 0.06), transparent 20%);
+      radial-gradient(circle at 82% 12%, rgba(99, 91, 255, 0.08), transparent 22%),
+      radial-gradient(circle at 50% 80%, rgba(123, 145, 255, 0.06), transparent 20%);
   }
 
   .goldpay-orb {
