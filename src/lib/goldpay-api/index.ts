@@ -8,4 +8,5 @@ export {
   clearAuthToken,
 } from "./client";
 export { GOLDPAY_API_BASE, AUTH_TOKEN_KEY } from "./config";
+export { fetchPublicDepositInstructions } from "./public-deposit";
 export type * from "./types";

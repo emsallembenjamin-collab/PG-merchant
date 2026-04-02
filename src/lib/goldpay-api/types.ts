@@ -73,9 +73,36 @@ export interface Provider {
   updated_at: string;
 }
 
+/** Public `GET .../public/deposit/:token` — no API key. */
+export interface PublicDepositInstructions {
+  transaction_id: number;
+  type: "deposit";
+  amount: number;
+  currency: string;
+  reference_id?: string;
+  external_id?: string;
+  status: string;
+  failure_reason?: string;
+  metadata?: Record<string, unknown>;
+  provider?: {
+    id: number;
+    name: string;
+    display_name: string;
+  };
+  payment?: Record<string, unknown>;
+  provider_error?: {
+    code?: string | number;
+    message?: string;
+  };
+  created_at: string;
+  updated_at: string;
+}
+
 export interface Transaction {
   id: number;
   merchant_id: number;
+  /** Present on new deposits — use for the customer-facing `/pay/{token}` page. */
+  public_token?: string;
   provider_id?: number;
   type: TransactionType;
   amount: string;

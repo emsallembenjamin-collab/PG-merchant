@@ -7,19 +7,22 @@ import {
   DropdownTrigger,
 } from "@/components/ui/dropdown";
 import { useAuth } from "@/contexts/auth-context";
+import { useMerchantAvatar } from "@/hooks/use-merchant-avatar";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { LogOutIcon, SettingsIcon, UserIcon } from "./icons";
 
+const DEFAULT_AVATAR = "/images/user/user-03.png";
+
 export function UserInfo() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
+  const avatarDataUrl = useMerchantAvatar();
   const displayUser = {
     name: user?.name || "Merchant",
     email: user?.email || "",
-    img: "/images/user/user-03.png",
   };
 
   return (
@@ -28,14 +31,25 @@ export function UserInfo() {
         <span className="sr-only">My Account</span>
 
         <figure className="flex items-center gap-3 rounded-full border border-white/80 bg-white/80 px-2 py-1.5 shadow-card dark:border-dark-3 dark:bg-dark-2">
-          <Image
-            src={displayUser.img}
-            className="size-11 rounded-full object-cover"
-            alt={`Avatar of ${displayUser.name}`}
-            role="presentation"
-            width={200}
-            height={200}
-          />
+          {avatarDataUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element -- localStorage data URL from settings
+            <img
+              src={avatarDataUrl}
+              className="size-11 rounded-full object-cover ring-2 ring-line"
+              alt=""
+              width={44}
+              height={44}
+            />
+          ) : (
+            <Image
+              src={DEFAULT_AVATAR}
+              className="size-11 rounded-full object-cover"
+              alt={`Avatar of ${displayUser.name}`}
+              role="presentation"
+              width={200}
+              height={200}
+            />
+          )}
           <figcaption className="flex items-center gap-1 font-medium text-dark dark:text-dark-6 max-[1024px]:sr-only">
             <span className="max-w-[8rem] truncate">{displayUser.name}</span>
 
@@ -58,14 +72,25 @@ export function UserInfo() {
         <h2 className="sr-only">User information</h2>
 
         <figure className="flex items-center gap-3 px-5 py-4">
-          <Image
-            src={displayUser.img}
-            className="size-12 rounded-full object-cover"
-            alt={`Avatar for ${displayUser.name}`}
-            role="presentation"
-            width={200}
-            height={200}
-          />
+          {avatarDataUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element -- localStorage data URL from settings
+            <img
+              src={avatarDataUrl}
+              className="size-12 rounded-full object-cover ring-2 ring-line"
+              alt=""
+              width={48}
+              height={48}
+            />
+          ) : (
+            <Image
+              src={DEFAULT_AVATAR}
+              className="size-12 rounded-full object-cover"
+              alt={`Avatar for ${displayUser.name}`}
+              role="presentation"
+              width={200}
+              height={200}
+            />
+          )}
 
           <figcaption className="space-y-1 text-base font-medium">
             <div className="mb-2 leading-none text-dark dark:text-white">
@@ -76,7 +101,7 @@ export function UserInfo() {
           </figcaption>
         </figure>
 
-        <hr className="border-[#F0E7D9] dark:border-dark-3" />
+        <hr className="border-line dark:border-dark-3" />
 
         <div className="p-2 text-base text-[#4B5563] dark:text-dark-6 [&>*]:cursor-pointer">
           <Link
@@ -102,7 +127,7 @@ export function UserInfo() {
           </Link>
         </div>
 
-        <hr className="border-[#F0E7D9] dark:border-dark-3" />
+        <hr className="border-line dark:border-dark-3" />
 
         <div className="p-2 text-base text-[#4B5563] dark:text-dark-6">
           <button

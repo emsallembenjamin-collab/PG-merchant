@@ -10,8 +10,24 @@ function isAuthRoute(pathname: string | null) {
   return pathname?.startsWith("/auth") ?? false;
 }
 
+/** Customer-facing payment page — no sidebar/header chrome. */
+function isPublicPayRoute(pathname: string | null) {
+  return pathname?.startsWith("/pay/") ?? false;
+}
+
 export function AppShell({ children }: PropsWithChildren) {
   const pathname = usePathname();
+
+  if (isPublicPayRoute(pathname)) {
+    return (
+      <div className="goldpay-shell min-h-screen">
+        <GoldPayAmbientBackground variant="hero" />
+        <main className="relative z-10 mx-auto w-full max-w-3xl p-4 pb-12 md:p-8">
+          {children}
+        </main>
+      </div>
+    );
+  }
 
   if (isAuthRoute(pathname)) {
     return (

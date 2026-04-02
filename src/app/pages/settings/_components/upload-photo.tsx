@@ -2,10 +2,12 @@
 
 import { UploadIcon } from "@/assets/icons";
 import { ShowcaseSection } from "@/components/Layouts/showcase-section";
+import {
+  MERCHANT_AVATAR_STORAGE_KEY,
+  dispatchMerchantAvatarChanged,
+} from "@/lib/merchant-avatar";
 import Image from "next/image";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
-
-const STORAGE_KEY = "goldpayMerchantAvatar";
 const MAX_FILE_BYTES = 2 * 1024 * 1024;
 const MAX_STORE_DIM = 512;
 
@@ -68,7 +70,7 @@ export function UploadPhotoForm() {
 
   useEffect(() => {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = localStorage.getItem(MERCHANT_AVATAR_STORAGE_KEY);
       if (raw?.startsWith("data:image")) {
         setSavedDataUrl(raw);
       }
@@ -126,9 +128,10 @@ export function UploadPhotoForm() {
     }
     try {
       const dataUrl = await fileToResizedDataUrl(pendingFile, MAX_STORE_DIM);
-      localStorage.setItem(STORAGE_KEY, dataUrl);
+      localStorage.setItem(MERCHANT_AVATAR_STORAGE_KEY, dataUrl);
       setSavedDataUrl(dataUrl);
       clearPending();
+      dispatchMerchantAvatarChanged();
     } catch {
       setError("Could not save the image. Try another file.");
     }
@@ -144,12 +147,13 @@ export function UploadPhotoForm() {
     setError(null);
     clearPending();
     try {
-      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(MERCHANT_AVATAR_STORAGE_KEY);
     } catch {
       /* ignore */
     }
     setSavedDataUrl(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
+    dispatchMerchantAvatarChanged();
   };
 
   const openPicker = () => fileInputRef.current?.click();

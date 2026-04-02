@@ -53,6 +53,7 @@ export default function PayinUrlPage() {
   const [tx, setTx] = useState<TransactionDetails | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (!id || Number.isNaN(id)) return;
@@ -70,6 +71,12 @@ export default function PayinUrlPage() {
     const url = payment.url ?? payment.payurl;
     return typeof url === "string" && url ? url : null;
   }, [payment]);
+
+  const customerPayUrl = useMemo(() => {
+    if (!tx?.public_token) return null;
+    if (typeof window === "undefined") return null;
+    return `${window.location.origin}/merchant/pay/${tx.public_token}`;
+  }, [tx?.public_token]);
 
   const qrValue = useMemo(() => {
     if (!payment) return null;
@@ -161,6 +168,46 @@ export default function PayinUrlPage() {
           <h3 className="mb-4 text-lg font-semibold text-dark dark:text-white">
             Payment Instructions
           </h3>
+
+          {customerPayUrl && (
+            <div className="mb-6 rounded-xl border border-primary/25 bg-primary/5 p-4 dark:border-primary/30 dark:bg-primary/10">
+              <div className="text-sm font-semibold text-ink dark:text-white">
+                Customer payment page (no login)
+              </div>
+              <p className="mt-1 text-xs text-ink-muted">
+                Share this link with your payer. It shows amount, QR, and bank
+                details without a GoldPay account.
+              </p>
+              <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center">
+                <code className="block flex-1 truncate rounded-lg bg-surface-soft px-3 py-2 text-xs text-ink dark:bg-dark-2">
+                  {customerPayUrl}
+                </code>
+                <button
+                  type="button"
+                  className="merchant-secondary-button shrink-0 px-4 py-2 text-sm"
+                  onClick={async () => {
+                    try {
+                      await navigator.clipboard.writeText(customerPayUrl);
+                      setCopied(true);
+                      setTimeout(() => setCopied(false), 2000);
+                    } catch {
+                      /* ignore */
+                    }
+                  }}
+                >
+                  {copied ? "Copied" : "Copy link"}
+                </button>
+                <a
+                  href={customerPayUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="merchant-primary-button shrink-0 px-4 py-2 text-sm"
+                >
+                  Open
+                </a>
+              </div>
+            </div>
+          )}
 
           {tx.provider_error && (
             <div className="mb-4 rounded border border-red-200 bg-red-50 p-4 text-sm text-red-700">
