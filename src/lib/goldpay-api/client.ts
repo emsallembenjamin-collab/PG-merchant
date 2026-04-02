@@ -4,10 +4,13 @@ import { GOLDPAY_API_BASE, AUTH_TOKEN_KEY } from "./config";
 import type {
   AppNotification,
   AssignProviderBody,
+  CreateFundingDepositBody,
+  CreateFundingWithdrawalBody,
   CreateTransactionBody,
   CreateMerchantBody,
   Merchant,
   MerchantApiKey,
+  MerchantBankListResponse,
   MerchantSessionUser,
   NotificationListResponse,
   Reconciliation,
@@ -291,10 +294,31 @@ export const notificationsApi = {
     }),
 };
 
+export const fundingApi = {
+  bankList: (body: { pay_type: number }) =>
+    request<MerchantBankListResponse>(`funding/bank-list`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+
+  createDeposit: (body: CreateFundingDepositBody) =>
+    request<TransactionDetails>(`funding/deposits`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+
+  createWithdrawal: (body: CreateFundingWithdrawalBody) =>
+    request<TransactionDetails>(`funding/withdrawals`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
+};
+
 export const goldpayApi = {
   merchants: merchantsApi,
   providers: providersApi,
   transactions: transactionsApi,
+  funding: fundingApi,
   reconciliation: reconciliationApi,
   notifications: notificationsApi,
 };

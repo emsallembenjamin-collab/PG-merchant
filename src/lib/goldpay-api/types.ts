@@ -64,18 +64,18 @@ export interface Provider {
 export interface Transaction {
   id: number;
   merchant_id: number;
-  provider_id: number;
+  provider_id?: number;
   type: TransactionType;
   amount: string;
   currency: string;
   status: TransactionStatus;
-  external_id: string | null;
-  reference_id: string | null;
+  external_id?: string | null;
+  reference_id?: string | null;
   /**
    * GoldPay stores merchant-facing metadata as JSON.
    * Depending on the backend mapping, it may arrive as an object or a JSON string.
    */
-  metadata: Record<string, unknown> | string | null;
+  metadata?: Record<string, unknown> | string | null;
   /** Provider business error (e.g. DPay code/message) when the provider request fails. */
   provider_error?: { code?: string | number; message?: string } | null;
   /**
@@ -83,7 +83,7 @@ export interface Transaction {
    * Not present for withdrawals in most provider flows.
    */
   payment?: Record<string, unknown> | null;
-  failure_reason: string | null;
+  failure_reason?: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -228,4 +228,34 @@ export interface AppNotification {
 export interface NotificationListResponse {
   data: AppNotification[];
   unreadCount: number;
+}
+
+// ——— Merchant Funding API ———
+export type MerchantBankListResponse =
+  | {
+      success: true;
+      code: number | string;
+      message?: string;
+      data: Array<{ code: number | string; bank_name: string }>;
+    }
+  | {
+      success: false;
+      provider_error?: { code?: string | number; message?: string };
+      raw?: unknown;
+    };
+
+export interface CreateFundingDepositBody {
+  amount: number;
+  currency?: string;
+  reference_id?: string;
+  idempotency_key?: string;
+  metadata?: Record<string, unknown>;
+}
+
+export interface CreateFundingWithdrawalBody {
+  amount: number;
+  currency?: string;
+  reference_id?: string;
+  idempotency_key?: string;
+  metadata?: Record<string, unknown>;
 }
