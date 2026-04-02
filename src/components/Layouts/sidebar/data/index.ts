@@ -12,7 +12,11 @@ export const NAV_DATA = [
       {
         title: "Transactions",
         icon: Icons.Table,
-        items: [{ title: "Transactions", url: "/transactions" }],
+        items: [
+          { title: "Transactions", url: "/transactions" },
+          { title: "Payin URL", url: "/transactions/payin" },
+          { title: "Payout URL", url: "/transactions/payout" },
+        ],
       },
       {
         title: "History",
