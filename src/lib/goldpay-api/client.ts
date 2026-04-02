@@ -72,9 +72,13 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
     ...(options.headers as Record<string, string>),
   };
 
-  // Merchant portal authenticates using a GoldPay API key sent as X-API-Key.
+  // Merchant portal authenticates using a GoldPay API key.
+  // Send X-API-Key and duplicate as Bearer for proxies that strip custom headers on PATCH.
   if (credential) {
     (headers as Record<string, string>)["X-API-Key"] = credential;
+    if (credential.startsWith("gpk_")) {
+      (headers as Record<string, string>)["Authorization"] = `Bearer ${credential}`;
+    }
   }
 
   const res = await fetch(url, {
