@@ -22,8 +22,3 @@ export function getMerchantSwaggerUrl(): string {
 export function getMerchantOpenApiJsonUrl(): string {
   return `${getGoldPayOrigin()}/api/docs/merchant-json`;
 }
-
-/** Full platform Swagger (admin, etc.). */
-export function getPlatformSwaggerUrl(): string {
-  return `${getGoldPayOrigin()}/api/docs`;
-}

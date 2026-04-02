@@ -3,7 +3,6 @@ import {
   getGoldPayOrigin,
   getMerchantOpenApiJsonUrl,
   getMerchantSwaggerUrl,
-  getPlatformSwaggerUrl,
 } from "@/lib/goldpay-api/docs-urls";
 import { GOLDPAY_API_BASE } from "@/lib/goldpay-api/config";
 import type { Metadata } from "next";
@@ -47,7 +46,6 @@ export default function ApiDocsPage() {
   const origin = getGoldPayOrigin();
   const swaggerMerchant = getMerchantSwaggerUrl();
   const openApiMerchant = getMerchantOpenApiJsonUrl();
-  const swaggerAll = getPlatformSwaggerUrl();
 
   return (
     <>
@@ -117,17 +115,6 @@ export default function ApiDocsPage() {
                 OpenAPI JSON (merchant)
               </Link>
               <span className="text-dark-6"> — import into Postman or codegen</span>
-            </li>
-            <li>
-              <Link
-                href={swaggerAll}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-primary underline-offset-2 hover:underline"
-              >
-                Full platform Swagger
-              </Link>
-              <span className="text-dark-6"> — admin and all routes</span>
             </li>
           </ul>
         </Section>
