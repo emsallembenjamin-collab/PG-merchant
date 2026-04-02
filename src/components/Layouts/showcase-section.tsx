@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 
@@ -10,7 +12,7 @@ type PropsType = {
 export function ShowcaseSection({ title, children, className }: PropsType) {
   return (
     <div className="merchant-card overflow-hidden">
-      <h2 className="border-b border-[#F0E7D9] px-5 py-4 text-lg font-semibold text-dark dark:border-dark-3 dark:text-white sm:px-6 xl:px-7.5">
+      <h2 className="border-b border-line px-5 py-4 text-lg font-semibold text-ink dark:border-dark-3 dark:text-white sm:px-6 xl:px-7.5">
         {title}
       </h2>
 

@@ -33,9 +33,21 @@ export interface Merchant {
   webhook_url: string | null;
   webhook_secret?: string | null;
   provider_id: number | null;
+  /** Optional contact / display fields (merchant self-service profile). */
+  phone?: string | null;
+  username?: string | null;
+  bio?: string | null;
   created_at: string;
   updated_at: string;
   provider?: { id: number; name: string; display_name: string } | null;
+}
+
+export interface UpdateMerchantProfileBody {
+  name?: string;
+  email?: string;
+  phone?: string | null;
+  username?: string | null;
+  bio?: string | null;
 }
 
 export interface MerchantApiKey {
@@ -115,6 +127,9 @@ export interface MerchantSessionUser {
   email: string;
   status: MerchantStatus;
   provider_id: number | null;
+  phone?: string | null;
+  username?: string | null;
+  bio?: string | null;
 }
 
 export interface AuthLoginResponse {

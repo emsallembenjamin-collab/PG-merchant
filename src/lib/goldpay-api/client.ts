@@ -11,7 +11,7 @@ import type {
   Merchant,
   MerchantApiKey,
   MerchantBankListResponse,
-  MerchantSessionUser,
+  UpdateMerchantProfileBody,
   NotificationListResponse,
   TransactionWithRelations,
   Provider,
@@ -124,7 +124,12 @@ export const merchantsApi = {
       method: "PATCH",
       body: JSON.stringify(body),
     }),
-  me: () => request<MerchantSessionUser>("merchants/me"),
+  me: () => request<Merchant>("merchants/me"),
+  updateMe: (body: UpdateMerchantProfileBody) =>
+    request<Merchant>("merchants/me", {
+      method: "PATCH",
+      body: JSON.stringify(body),
+    }),
   listApiKeys: (merchantId: number) =>
     request<MerchantApiKey[]>(`merchants/${merchantId}/api-keys`),
   createApiKey: (merchantId: number, name?: string) =>

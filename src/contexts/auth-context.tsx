@@ -14,7 +14,7 @@ import {
   setAuthToken,
   clearAuthToken,
   AUTH_TOKEN_KEY,
-  type MerchantSessionUser,
+  type Merchant,
 } from "@/lib/goldpay-api";
 
 interface AuthContextValue {
@@ -22,9 +22,10 @@ interface AuthContextValue {
   isLoading: boolean;
   login: (apiKey: string) => Promise<void>;
   rotateApiKey: (name?: string) => Promise<string>;
+  refreshUser: () => Promise<void>;
   logout: () => void;
   token: string | null;
-  user: MerchantSessionUser | null;
+  user: Merchant | null;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -35,20 +36,20 @@ function readToken(): string | null {
   return localStorage.getItem(AUTH_TOKEN_KEY);
 }
 
-function readUser(): MerchantSessionUser | null {
+function readUser(): Merchant | null {
   if (typeof window === "undefined") return null;
   const raw = localStorage.getItem(AUTH_USER_KEY);
   if (!raw) return null;
 
   try {
-    return JSON.parse(raw) as MerchantSessionUser;
+    return JSON.parse(raw) as Merchant;
   } catch {
     localStorage.removeItem(AUTH_USER_KEY);
     return null;
   }
 }
 
-function writeUser(user: MerchantSessionUser | null) {
+function writeUser(user: Merchant | null) {
   if (typeof window === "undefined") return;
 
   if (!user) {
@@ -67,7 +68,7 @@ function clearStoredSession() {
 export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
   const [token, setTokenState] = useState<string | null>(null);
-  const [user, setUser] = useState<MerchantSessionUser | null>(null);
+  const [user, setUser] = useState<Merchant | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const clearSession = useCallback((redirectToSignIn = false) => {
     clearStoredSession();
@@ -191,11 +192,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [router]
   );
 
+  const refreshUser = useCallback(async () => {
+    const currentUser = await goldpayApi.merchants.me();
+    setUser(currentUser);
+    writeUser(currentUser);
+    router.refresh();
+  }, [router]);
+
   const value: AuthContextValue = {
     isAuthenticated: !!token && !!user,
     isLoading,
     login,
     rotateApiKey,
+    refreshUser,
     logout,
     token,
     user,
