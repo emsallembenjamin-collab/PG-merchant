@@ -10,6 +10,11 @@ export const NAV_DATA = [
         items: [{ title: "Overview", url: "/" }],
       },
       {
+        title: "Documentation",
+        icon: Icons.DocIcon,
+        items: [{ title: "API reference", url: "/docs" }],
+      },
+      {
         title: "Transactions",
         icon: Icons.Table,
         items: [
