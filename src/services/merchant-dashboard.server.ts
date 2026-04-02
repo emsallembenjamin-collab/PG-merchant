@@ -48,13 +48,14 @@ const CHANNEL_LOGOS: Record<string, typeof logos.google> = {
 };
 const DEVICE_ORDER = ["Desktop", "Mobile", "Tablet", "Unknown"] as const;
 
-function parseMetadata(metadata: string | null): DashboardMetadata {
+function parseMetadata(metadata: unknown): DashboardMetadata {
   if (!metadata) {
     return {};
   }
 
   try {
-    const parsed = JSON.parse(metadata);
+    const parsed =
+      typeof metadata === "string" ? JSON.parse(metadata) : metadata;
     return parsed && typeof parsed === "object" ? (parsed as DashboardMetadata) : {};
   } catch {
     return {};

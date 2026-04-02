@@ -15,6 +15,11 @@ export function getSandboxMetadata(
   }
 
   try {
+    if (typeof transaction.metadata === "object") {
+      const maybe = transaction.metadata as SandboxMetadata;
+      return maybe?.sandbox ? maybe : null;
+    }
+
     const parsed = JSON.parse(transaction.metadata) as SandboxMetadata;
     return parsed?.sandbox ? parsed : null;
   } catch {

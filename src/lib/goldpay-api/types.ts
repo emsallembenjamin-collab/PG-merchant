@@ -71,7 +71,18 @@ export interface Transaction {
   status: TransactionStatus;
   external_id: string | null;
   reference_id: string | null;
-  metadata: string | null;
+  /**
+   * GoldPay stores merchant-facing metadata as JSON.
+   * Depending on the backend mapping, it may arrive as an object or a JSON string.
+   */
+  metadata: Record<string, unknown> | string | null;
+  /** Provider business error (e.g. DPay code/message) when the provider request fails. */
+  provider_error?: { code?: string | number; message?: string } | null;
+  /**
+   * Deposit/payment instructions (bank QR/code, redirect URL, etc.) when the provider returns them.
+   * Not present for withdrawals in most provider flows.
+   */
+  payment?: Record<string, unknown> | null;
   failure_reason: string | null;
   created_at: string;
   updated_at: string;

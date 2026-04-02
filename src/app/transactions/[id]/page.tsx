@@ -208,6 +208,35 @@ export default function TransactionDetailPage() {
           </dl>
         </div>
 
+        <div className="merchant-card p-6">
+          <h3 className="mb-4 text-lg font-semibold text-dark dark:text-white">
+            Payment Links
+          </h3>
+          <div className="flex flex-wrap gap-3">
+            {tx.type === "deposit" && (
+              <Link
+                href={`/transactions/${tx.id}/payin`}
+                className="inline-block rounded px-4 py-2 font-semibold text-primary transition hover:opacity-80"
+              >
+                Payin URL
+              </Link>
+            )}
+            {tx.type === "withdrawal" && (
+              <Link
+                href={`/transactions/${tx.id}/payout`}
+                className="inline-block rounded px-4 py-2 font-semibold text-primary transition hover:opacity-80"
+              >
+                Payout URL
+              </Link>
+            )}
+          </div>
+          {tx.type === "deposit" && !tx.payment && (
+            <p className="mt-3 text-sm text-dark-6">
+              No payment instructions available yet.
+            </p>
+          )}
+        </div>
+
         {tx.attempts && tx.attempts.length > 0 && (
           <div className="merchant-card p-6">
             <h3 className="mb-4 text-lg font-semibold text-dark dark:text-white">
