@@ -40,7 +40,7 @@ export function TextAreaGroup({
           placeholder={placeholder}
           defaultValue={defaultValue}
           className={cn(
-            "w-full rounded-[24px] border border-[#E8DED0] bg-[#FCFAF7] px-5.5 py-3 text-dark outline-none transition placeholder:text-[#8A7A61] focus:border-primary focus:bg-white disabled:cursor-default disabled:bg-gray-2 data-[active=true]:border-primary dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:placeholder:text-dark-6 dark:focus:border-primary dark:disabled:bg-dark dark:data-[active=true]:border-primary",
+            "w-full rounded-[24px] border border-line bg-white px-5.5 py-3 text-ink outline-none transition placeholder:text-ink-muted hover:border-line-strong focus:border-primary focus:bg-white focus:ring-2 focus:ring-primary/20 disabled:cursor-default disabled:bg-surface-soft data-[active=true]:border-primary dark:border-dark-3 dark:bg-dark-2 dark:text-white dark:placeholder:text-dark-6 dark:focus:border-primary dark:focus:ring-primary/25 dark:disabled:bg-dark dark:data-[active=true]:border-primary",
             icon && "py-5 pl-13 pr-5",
           )}
           required={required}

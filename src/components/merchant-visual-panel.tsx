@@ -84,7 +84,7 @@ export function MerchantVisualPanel({
                 <div className="rounded-[22px] border border-white/70 bg-white/92 p-4 shadow-card dark:border-dark-3 dark:bg-dark/80">
                   <div className="flex items-end justify-between">
                     <div>
-                      <p className="text-xs font-medium uppercase tracking-[0.16em] text-[#907F6A] dark:text-dark-6">
+                      <p className="text-xs font-medium uppercase tracking-[0.16em] text-ink-muted dark:text-dark-6">
                         {isHero ? "Processed volume" : "Scenario runs"}
                       </p>
                       <p className="mt-2 text-2xl font-bold text-slate-900 dark:text-white">
@@ -128,7 +128,7 @@ export function MerchantVisualPanel({
                       key={label}
                       className="rounded-[22px] border border-white/70 bg-white/92 p-4 shadow-card dark:border-dark-3 dark:bg-dark/80"
                     >
-                      <p className="text-xs font-medium uppercase tracking-[0.16em] text-[#907F6A] dark:text-dark-6">
+                      <p className="text-xs font-medium uppercase tracking-[0.16em] text-ink-muted dark:text-dark-6">
                         {label}
                       </p>
                       <p className="mt-2 text-lg font-semibold text-slate-900 dark:text-white">

@@ -18,7 +18,7 @@ export function OverviewCard({ label, data, Icon }: PropsType) {
     <div className="merchant-card p-6">
       <div className="flex items-start justify-between gap-4">
         <dl>
-          <dd className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#8A7A61] dark:text-dark-6">
+          <dd className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-ink-muted dark:text-dark-6">
             {label}
           </dd>
           <dt className="text-heading-6 font-bold text-dark dark:text-white">
@@ -35,7 +35,7 @@ export function OverviewCard({ label, data, Icon }: PropsType) {
         <span className="text-sm text-dark-6">Compared with previous period</span>
 
         <dl className={cn("text-sm font-semibold", isDecreasing ? "text-red" : "text-green")}>
-          <dt className="flex items-center gap-1.5 rounded-full bg-[#FBF7F2] px-3 py-1 dark:bg-dark-2">
+          <dt className="flex items-center gap-1.5 rounded-full bg-surface-soft px-3 py-1 dark:bg-dark-2">
             {data.growthRate}%
             {isDecreasing ? (
               <ArrowDownIcon aria-hidden />

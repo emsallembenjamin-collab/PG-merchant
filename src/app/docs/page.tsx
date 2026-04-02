@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 function CodeBlock({ children }: { children: string }) {
   return (
-    <pre className="mt-2 overflow-x-auto rounded-lg border border-stroke bg-[#FBF7F2] p-4 text-left text-sm text-dark dark:border-dark-3 dark:bg-dark-2 dark:text-white">
+    <pre className="mt-2 overflow-x-auto rounded-lg border border-line bg-surface-soft p-4 text-left text-sm text-ink dark:border-dark-3 dark:bg-dark-2 dark:text-white">
       <code>{children}</code>
     </pre>
   );
@@ -34,7 +34,7 @@ function Section({
 }) {
   return (
     <section id={id} className="merchant-card scroll-mt-24 p-6 md:p-8">
-      <h3 className="mb-4 text-lg font-semibold text-dark dark:text-white">
+      <h3 className="mb-4 text-lg font-semibold text-ink dark:text-white">
         {title}
       </h3>
       {children}
@@ -75,15 +75,15 @@ export default function ApiDocsPage() {
             </li>
             <li>
               <strong className="text-dark dark:text-white">Version:</strong> v1 — paths under{" "}
-              <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">/api/v1</code>
+              <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">/api/v1</code>
             </li>
             <li>
               <strong className="text-dark dark:text-white">Auth:</strong> header{" "}
-              <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">X-API-Key</code>
+              <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">X-API-Key</code>
             </li>
             <li>
               <strong className="text-dark dark:text-white">Idempotency:</strong> optional{" "}
-              <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">idempotency_key</code> on creates
+              <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">idempotency_key</code> on creates
             </li>
           </ul>
         </Section>
@@ -122,12 +122,12 @@ export default function ApiDocsPage() {
         <Section id="auth" title="Authentication">
           <p className="text-body-sm text-dark-6">
             Every request must include your API secret (created by the operator or rotated via{" "}
-            <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">POST /merchants/me/api-keys/rotate</code>).
+            <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">POST /merchants/me/api-keys/rotate</code>).
           </p>
           <CodeBlock>{`X-API-Key: <your_api_secret>`}</CodeBlock>
           <p className="mt-3 text-body-sm text-dark-6">
-            If the merchant has <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">whitelisted_ips</code>, requests
-            from other IPs return <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">403</code>.
+            If the merchant has <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">whitelisted_ips</code>, requests
+            from other IPs return <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">403</code>.
           </p>
         </Section>
 
@@ -262,15 +262,15 @@ export default function ApiDocsPage() {
             </table>
           </div>
           <p className="mt-4 text-body-sm text-dark-6">
-            For <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">application/x-www-form-urlencoded</code>, send{" "}
-            <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">metadata</code> as a JSON string.
+            For <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">application/x-www-form-urlencoded</code>, send{" "}
+            <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">metadata</code> as a JSON string.
           </p>
         </Section>
 
         <Section id="response" title="Response shape">
           <p className="text-body-sm text-dark-6">
             Successful creates return a merchant transaction object. Deposit instructions appear under{" "}
-            <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">payment</code> when the provider returns them.
+            <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">payment</code> when the provider returns them.
           </p>
           <CodeBlock>{`{
   "id": 42,
@@ -287,33 +287,33 @@ export default function ApiDocsPage() {
         <Section id="errors" title="HTTP errors & provider errors">
           <ul className="list-inside list-disc space-y-2 text-body-sm text-dark-6">
             <li>
-              <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">400</code> — validation / business rule
+              <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">400</code> — validation / business rule
             </li>
             <li>
-              <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">401</code> — missing or invalid API key
+              <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">401</code> — missing or invalid API key
             </li>
             <li>
-              <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">403</code> — IP not allowlisted
+              <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">403</code> — IP not allowlisted
             </li>
             <li>
-              <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">404</code> — unknown transaction
+              <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">404</code> — unknown transaction
             </li>
           </ul>
           <p className="mt-4 text-body-sm text-dark-6">
             When the upstream provider rejects an operation, you may still get HTTP 200 with{" "}
-            <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">status: &quot;failed&quot;</code> and{" "}
-            <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">provider_error</code> (e.g. DPay codes).
+            <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">status: &quot;failed&quot;</code> and{" "}
+            <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">provider_error</code> (e.g. DPay codes).
           </p>
         </Section>
 
         <Section id="webhooks" title="Webhooks (outbound)">
           <p className="text-body-sm text-dark-6">
-            If <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">webhook_url</code> is set on your merchant,
-            GoldPay can POST JSON events (e.g. <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">transaction.updated</code>).
+            If <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">webhook_url</code> is set on your merchant,
+            GoldPay can POST JSON events (e.g. <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">transaction.updated</code>).
           </p>
           <p className="mt-3 text-body-sm text-dark-6">
-            When <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">webhook_secret</code> is set, verify header{" "}
-            <code className="rounded bg-[#FBF7F2] px-1 dark:bg-dark-2">X-Webhook-Signature</code>: HMAC-SHA256 of the raw
+            When <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">webhook_secret</code> is set, verify header{" "}
+            <code className="rounded bg-surface-soft px-1 dark:bg-dark-2">X-Webhook-Signature</code>: HMAC-SHA256 of the raw
             body, hex-encoded.
           </p>
         </Section>

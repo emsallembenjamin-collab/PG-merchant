@@ -19,7 +19,7 @@ export async function ChatsCard() {
           <li key={key}>
             <Link
               href="/"
-              className="flex items-center gap-4.5 px-7.5 py-3 outline-none transition hover:bg-[#FBF7F2] focus-visible:bg-[#FBF7F2] dark:hover:bg-dark-2 dark:focus-visible:bg-dark-2"
+              className="flex items-center gap-4.5 px-7.5 py-3 outline-none transition hover:bg-surface-soft focus-visible:bg-surface-soft dark:hover:bg-dark-2 dark:focus-visible:bg-dark-2"
             >
               <div className="relative shrink-0">
                 <Image

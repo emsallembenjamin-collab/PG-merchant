@@ -76,7 +76,7 @@ export function UserInfo() {
           </figcaption>
         </figure>
 
-        <hr className="border-[#F0E7D9] dark:border-dark-3" />
+        <hr className="border-line dark:border-dark-3" />
 
         <div className="p-2 text-base text-[#4B5563] dark:text-dark-6 [&>*]:cursor-pointer">
           <Link
@@ -102,7 +102,7 @@ export function UserInfo() {
           </Link>
         </div>
 
-        <hr className="border-[#F0E7D9] dark:border-dark-3" />
+        <hr className="border-line dark:border-dark-3" />
 
         <div className="p-2 text-base text-[#4B5563] dark:text-dark-6">
           <button

@@ -124,7 +124,7 @@ export default function HistoryPage() {
         <div className="p-4 sm:p-7.5">
           <Table>
             <TableHeader>
-              <TableRow className="border-none bg-[#FBF7F2] dark:bg-dark-2 [&>th]:py-4">
+              <TableRow className="border-none bg-surface-soft dark:bg-dark-2 [&>th]:py-4">
                 <TableHead>ID</TableHead>
                 <TableHead>Type</TableHead>
                 <TableHead>Amount</TableHead>

@@ -56,7 +56,7 @@ export function Sidebar() {
 
       <aside
         className={cn(
-          "overflow-hidden border-r border-white/70 bg-white/55 backdrop-blur-xl transition-[width] duration-200 ease-linear dark:border-dark-3/80 dark:bg-[#08111F]/80",
+          "overflow-hidden border-r border-line bg-surface-card/90 backdrop-blur-xl transition-[width] duration-200 ease-linear dark:border-dark-3/80 dark:bg-[#08111F]/80",
           isMobile ? "fixed bottom-0 top-0 z-50" : "sticky top-0 h-screen",
           isMobile ? (isOpen ? "w-[290px]" : "w-0") : isCollapsed ? "w-[96px]" : "w-[290px]",
         )}
@@ -67,7 +67,7 @@ export function Sidebar() {
         <div className="flex h-full flex-col px-4 py-6">
           <div
             className={cn(
-              "rounded-[26px] border border-white/80 bg-white/80 py-4 shadow-card dark:border-dark-3 dark:bg-dark/80",
+              "rounded-[26px] border border-line bg-surface-card py-4 shadow-card dark:border-dark-3 dark:bg-dark/80",
               isCollapsed
                 ? "flex flex-col items-center gap-3 px-2"
                 : "relative px-4",
@@ -114,7 +114,7 @@ export function Sidebar() {
             {NAV_DATA.map((section) => (
               <div key={section.label} className="mb-6">
                 {!isCollapsed && (
-                  <h2 className="mb-3 px-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#8A7A61] dark:text-dark-6">
+                  <h2 className="mb-3 px-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-ink-muted dark:text-dark-6">
                     {section.label}
                   </h2>
                 )}
