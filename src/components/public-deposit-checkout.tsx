@@ -181,6 +181,33 @@ export function PublicDepositCheckout({
 }: {
   data: PublicDepositInstructions;
 }) {
+  if (data.expired) {
+    return (
+      <div className="w-full px-4 py-16 md:px-8">
+        <div className="mx-auto max-w-lg rounded-2xl border border-amber-200 bg-amber-50 p-8 text-center shadow-sm">
+          <div className="mb-4 flex justify-center">
+            <Logo compact />
+          </div>
+          <h1 className="text-lg font-bold text-gray-900">
+            Payment link expired
+          </h1>
+          <p className="mt-3 text-sm text-gray-700">
+            {data.message ??
+              "This payment link is no longer valid. Ask the merchant for a new deposit link."}
+          </p>
+          {data.public_code ? (
+            <p className="mt-4 font-mono text-xs text-gray-500">
+              Reference: {data.public_code}
+            </p>
+          ) : null}
+          <p className="mt-2 text-sm text-gray-600">
+            {formatMoney(data.amount, data.currency)} · {data.status}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   const payment = useMemo(() => normalizeObject(data.payment), [data.payment]);
 
   const paymentUrl = useMemo(() => {
@@ -206,7 +233,13 @@ export function PublicDepositCheckout({
     () => pickTransferReference(data, payment),
     [data, payment],
   );
-  const expiresAt = useMemo(() => parseExpiryMs(payment), [payment]);
+  const expiresAt = useMemo(() => {
+    if (data.payment_link_expires_at) {
+      const t = Date.parse(data.payment_link_expires_at);
+      if (!Number.isNaN(t)) return t;
+    }
+    return parseExpiryMs(payment);
+  }, [data.payment_link_expires_at, payment]);
 
   const bankName = payment?.bank_name != null ? String(payment.bank_name) : "—";
   const bankNumber =

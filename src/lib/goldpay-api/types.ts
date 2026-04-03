@@ -84,6 +84,11 @@ export interface Provider {
 /** Public `GET .../public/deposit/:token` — no API key. */
 export interface PublicDepositInstructions {
   transaction_id: number;
+  /** When true, `payment` instructions are omitted — link passed `payment_link_expires_at`. */
+  expired?: boolean;
+  message?: string;
+  /** ISO 8601 — GoldPay stops showing pay-in UI after this for open deposits. */
+  payment_link_expires_at?: string;
   /** Same code as in the payment URL path when using `public_code`. */
   public_code?: string;
   type: "deposit";
@@ -117,6 +122,8 @@ export interface Transaction {
   public_code?: string;
   /** Absolute URL to the merchant portal checkout page (when GoldPay has `MERCHANT_PORTAL_PUBLIC_URL` set). */
   payment_url?: string;
+  /** ISO 8601 — public checkout link expiry for deposits. */
+  payment_link_expires_at?: string;
   provider_id?: number;
   type: TransactionType;
   amount: string;
