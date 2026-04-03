@@ -73,10 +73,12 @@ export default function PayinUrlPage() {
   }, [payment]);
 
   const customerPayUrl = useMemo(() => {
-    if (!tx?.public_token) return null;
+    if (tx?.payment_url) return tx.payment_url;
+    const segment = tx?.public_code || tx?.public_token;
+    if (!segment) return null;
     if (typeof window === "undefined") return null;
-    return `${window.location.origin}/merchant/pay/${tx.public_token}`;
-  }, [tx?.public_token]);
+    return `${window.location.origin}/merchant/pay/${segment}`;
+  }, [tx?.payment_url, tx?.public_code, tx?.public_token]);
 
   const qrValue = useMemo(() => {
     if (!payment) return null;

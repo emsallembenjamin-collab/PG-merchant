@@ -84,6 +84,8 @@ export interface Provider {
 /** Public `GET .../public/deposit/:token` — no API key. */
 export interface PublicDepositInstructions {
   transaction_id: number;
+  /** Same code as in the payment URL path when using `public_code`. */
+  public_code?: string;
   type: "deposit";
   amount: number;
   currency: string;
@@ -109,8 +111,12 @@ export interface PublicDepositInstructions {
 export interface Transaction {
   id: number;
   merchant_id: number;
-  /** Present on new deposits — use for the customer-facing `/pay/{token}` page. */
+  /** Present on new deposits — legacy opaque token; still accepted in `/pay/{token}`. */
   public_token?: string;
+  /** Human-readable checkout code (e.g. DS20260402…); preferred for `/pay/{code}` and `payment_url`. */
+  public_code?: string;
+  /** Absolute URL to the merchant portal checkout page (when GoldPay has `MERCHANT_PORTAL_PUBLIC_URL` set). */
+  payment_url?: string;
   provider_id?: number;
   type: TransactionType;
   amount: string;

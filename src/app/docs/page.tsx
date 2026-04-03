@@ -171,7 +171,13 @@ export default function ApiDocsPage() {
                 <tr className="border-b border-stroke/60 dark:border-dark-3/60">
                   <td className="py-2 pr-4 font-mono text-xs">POST</td>
                   <td className="py-2 pr-4 font-mono text-xs">/funding/deposits</td>
-                  <td className="py-2">Create deposit; response may include <code className="text-xs">payment</code></td>
+                  <td className="py-2">
+                    Create deposit; response includes <code className="text-xs">public_code</code> (checkout id, e.g. DS…),{" "}
+                    <code className="text-xs">public_token</code>,{" "}
+                    <code className="text-xs">payment_url</code> (when GoldPay sets{" "}
+                    <code className="text-xs">MERCHANT_PORTAL_PUBLIC_URL</code>), and{" "}
+                    <code className="text-xs">payment</code> instructions
+                  </td>
                 </tr>
                 <tr className="border-b border-stroke/60 dark:border-dark-3/60">
                   <td className="py-2 pr-4 font-mono text-xs">POST</td>

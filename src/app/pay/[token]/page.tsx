@@ -44,19 +44,17 @@ export default function PublicDepositPage() {
 
   if (loading) {
     return (
-      <div className="merchant-card p-10 text-center">
-        <p className="text-ink-muted">Loading payment details…</p>
+      <div className="flex min-h-screen w-full items-center justify-center px-4">
+        <p className="text-sm text-gray-500">Loading payment details…</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="merchant-card p-10 text-center">
-        <h1 className="text-lg font-semibold text-ink dark:text-white">
-          Payment unavailable
-        </h1>
-        <p className="mt-2 text-sm text-red-600 dark:text-red-400">{error}</p>
+      <div className="flex min-h-screen w-full flex-col items-center justify-center px-4 text-center">
+        <h1 className="text-lg font-semibold text-gray-900">Payment unavailable</h1>
+        <p className="mt-2 max-w-md text-sm text-red-600">{error}</p>
       </div>
     );
   }
