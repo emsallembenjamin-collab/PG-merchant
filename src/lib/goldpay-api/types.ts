@@ -37,6 +37,14 @@ export interface Merchant {
   phone?: string | null;
   username?: string | null;
   bio?: string | null;
+  /** Internal ledger currency (ISO 4217). */
+  balance_currency?: string;
+  /** Spendable balance (numeric from API). */
+  balance_available?: number;
+  /** Reserved for in-flight withdrawals. */
+  balance_locked?: number;
+  /** Available + locked. */
+  balance_total?: number;
   created_at: string;
   updated_at: string;
   provider?: { id: number; name: string; display_name: string } | null;

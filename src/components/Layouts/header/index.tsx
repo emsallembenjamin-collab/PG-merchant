@@ -2,6 +2,7 @@
 
 import { SearchIcon } from "@/assets/icons";
 import { Logo } from "@/components/logo";
+import { useAuth } from "@/contexts/auth-context";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSidebarContext } from "../sidebar/sidebar-context";
@@ -9,6 +10,20 @@ import { MenuIcon } from "./icons";
 import { Notification } from "./notification";
 import { ThemeToggleSwitch } from "./theme-toggle";
 import { UserInfo } from "./user-info";
+
+function formatLedger(amount: number | undefined, currency: string | undefined) {
+  const c = (currency || "USD").toUpperCase();
+  const n = typeof amount === "number" && Number.isFinite(amount) ? amount : 0;
+  try {
+    return new Intl.NumberFormat(undefined, {
+      style: "currency",
+      currency: c,
+      maximumFractionDigits: 2,
+    }).format(n);
+  } catch {
+    return `${n.toFixed(2)} ${c}`;
+  }
+}
 
 const PAGE_COPY = {
   "/": {
@@ -30,6 +45,7 @@ const PAGE_COPY = {
 } as const;
 
 export function Header() {
+  const { user } = useAuth();
   const { toggleSidebar, isMobile } = useSidebarContext();
   const pathname = usePathname();
   const pageCopy =
@@ -62,20 +78,29 @@ export function Header() {
         </div>
 
         <div className="hidden flex-1 items-center justify-center xl:flex">
-          <div className="flex min-w-[290px] items-center justify-between gap-4 rounded-full border border-[#ECE2D5] bg-[#FCF9F3] px-4 py-2 shadow-card dark:border-dark-3 dark:bg-dark-2">
-            <div className="flex min-w-0 items-center gap-3">
-              <span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#F9ECE0] text-[12px] font-bold text-[#E58A4A]">
-                $
-              </span>
-              <div className="min-w-0">
-                <p className="truncate text-[13px] font-semibold tracking-[-0.02em] text-[#8B7A68] dark:text-dark-6">
-                  4902 •••• •••• 3300
-                </p>
-              </div>
+          <div className="merchant-card flex min-w-[290px] max-w-md flex-col gap-0.5 px-4 py-2.5">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-gray-6 dark:text-dark-6">
+                Total balance
+              </p>
+              <p className="shrink-0 text-[15px] font-bold tracking-[-0.03em] text-dark dark:text-white">
+                {formatLedger(user?.balance_total, user?.balance_currency)}
+              </p>
             </div>
-            <p className="shrink-0 text-[13px] font-bold tracking-[-0.03em] text-[#1E1E1E] dark:text-white">
-              $1,465,297
-            </p>
+            <div className="flex flex-wrap justify-between gap-x-3 gap-y-0.5 text-[11px] text-gray-6 dark:text-dark-6">
+              <span>
+                Avail{" "}
+                <span className="font-semibold text-dark dark:text-dark-5">
+                  {formatLedger(user?.balance_available, user?.balance_currency)}
+                </span>
+              </span>
+              <span>
+                Locked{" "}
+                <span className="font-semibold text-dark dark:text-dark-5">
+                  {formatLedger(user?.balance_locked, user?.balance_currency)}
+                </span>
+              </span>
+            </div>
           </div>
         </div>
 
