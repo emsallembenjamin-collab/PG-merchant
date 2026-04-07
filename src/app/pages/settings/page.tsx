@@ -1,6 +1,7 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import type { Metadata } from "next";
 import { ApiAccessSection } from "./_components/api-access";
+import { LedgerBalanceSection } from "./_components/ledger-balance";
 import { PersonalInfoForm } from "./_components/personal-info";
 import { UploadPhotoForm } from "./_components/upload-photo";
 
@@ -19,6 +20,9 @@ export default function SettingsPage() {
         </div>
         <div className="col-span-5 xl:col-span-2">
           <UploadPhotoForm />
+        </div>
+        <div className="col-span-5 xl:col-span-3">
+          <LedgerBalanceSection />
         </div>
         <div className="col-span-5">
           <ApiAccessSection />

@@ -10,20 +10,7 @@ import { MenuIcon } from "./icons";
 import { Notification } from "./notification";
 import { ThemeToggleSwitch } from "./theme-toggle";
 import { UserInfo } from "./user-info";
-
-function formatLedger(amount: number | undefined, currency: string | undefined) {
-  const c = (currency || "USD").toUpperCase();
-  const n = typeof amount === "number" && Number.isFinite(amount) ? amount : 0;
-  try {
-    return new Intl.NumberFormat(undefined, {
-      style: "currency",
-      currency: c,
-      maximumFractionDigits: 2,
-    }).format(n);
-  } catch {
-    return `${n.toFixed(2)} ${c}`;
-  }
-}
+import { formatLedgerAmount } from "@/lib/format-ledger";
 
 const PAGE_COPY = {
   "/": {
@@ -88,20 +75,20 @@ export function Header() {
                       {row.currency} total
                     </p>
                     <p className="shrink-0 text-[15px] font-bold tracking-[-0.03em] text-dark dark:text-white">
-                      {formatLedger(row.balance_total, row.currency)}
+                      {formatLedgerAmount(row.balance_total, row.currency)}
                     </p>
                   </div>
                   <div className="flex flex-wrap justify-between gap-x-3 gap-y-0.5 text-[11px] text-gray-6 dark:text-dark-6">
                     <span>
                       Avail{" "}
                       <span className="font-semibold text-dark dark:text-dark-5">
-                        {formatLedger(row.balance_available, row.currency)}
+                        {formatLedgerAmount(row.balance_available, row.currency)}
                       </span>
                     </span>
                     <span>
                       Locked{" "}
                       <span className="font-semibold text-dark dark:text-dark-5">
-                        {formatLedger(row.balance_locked, row.currency)}
+                        {formatLedgerAmount(row.balance_locked, row.currency)}
                       </span>
                     </span>
                   </div>
@@ -114,20 +101,20 @@ export function Header() {
                     Total balance
                   </p>
                   <p className="shrink-0 text-[15px] font-bold tracking-[-0.03em] text-dark dark:text-white">
-                    {formatLedger(user?.balance_total, user?.balance_currency)}
+                    {formatLedgerAmount(user?.balance_total, user?.balance_currency)}
                   </p>
                 </div>
                 <div className="flex flex-wrap justify-between gap-x-3 gap-y-0.5 text-[11px] text-gray-6 dark:text-dark-6">
                   <span>
                     Avail{" "}
                     <span className="font-semibold text-dark dark:text-dark-5">
-                      {formatLedger(user?.balance_available, user?.balance_currency)}
+                      {formatLedgerAmount(user?.balance_available, user?.balance_currency)}
                     </span>
                   </span>
                   <span>
                     Locked{" "}
                     <span className="font-semibold text-dark dark:text-dark-5">
-                      {formatLedger(user?.balance_locked, user?.balance_currency)}
+                      {formatLedgerAmount(user?.balance_locked, user?.balance_currency)}
                     </span>
                   </span>
                 </div>
