@@ -189,7 +189,7 @@ export function HeaderBalanceCard({
           ) : null}
         </div>
 
-        <dl className="mt-3 grid grid-cols-2 gap-3 border-t border-stroke/35 pt-3 dark:border-dark-3/50">
+        {/* <dl className="mt-3 grid grid-cols-2 gap-3 border-t border-stroke/35 pt-3 dark:border-dark-3/50">
           <div>
             <dt className="text-[10px] font-medium uppercase tracking-wide text-[#AEA39A] dark:text-dark-6">
               Available
@@ -206,7 +206,7 @@ export function HeaderBalanceCard({
               {formatLedgerAmount(primary.balance_locked, primary.currency)}
             </dd>
           </div>
-        </dl>
+        </dl> */}
       </div>
 
       {open && others.length > 0 ? (
