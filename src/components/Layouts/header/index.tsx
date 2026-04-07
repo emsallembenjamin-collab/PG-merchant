@@ -10,7 +10,7 @@ import { MenuIcon } from "./icons";
 import { Notification } from "./notification";
 import { ThemeToggleSwitch } from "./theme-toggle";
 import { UserInfo } from "./user-info";
-import { formatLedgerAmount } from "@/lib/format-ledger";
+import { HeaderBalanceCard } from "./header-balance";
 
 const PAGE_COPY = {
   "/": {
@@ -37,8 +37,6 @@ export function Header() {
   const pathname = usePathname();
   const pageCopy =
     PAGE_COPY[pathname as keyof typeof PAGE_COPY] ?? PAGE_COPY["/"];
-  const balanceRows = user?.balances;
-
   return (
     <header className="sticky top-4 z-30 px-4 md:px-6 2xl:px-10">
       <div className="mx-auto flex w-full max-w-[1500px] items-center justify-between gap-4 rounded-[30px] border border-white/85 bg-white/88 px-4 py-4 shadow-card-2 backdrop-blur-xl dark:border-dark-3/80 dark:bg-[#08111F]/90 md:px-6">
@@ -66,61 +64,13 @@ export function Header() {
         </div>
 
         <div className="hidden flex-1 items-center justify-center xl:flex">
-          <div className="merchant-card flex min-w-[290px] max-w-md flex-col gap-2 px-4 py-2.5">
-            {balanceRows && balanceRows.length > 0 ? (
-              balanceRows.map((row) => (
-                <div key={row.currency} className="flex flex-col gap-0.5 border-b border-stroke/40 pb-2 last:border-0 last:pb-0 dark:border-dark-3/60">
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="text-[11px] font-semibold uppercase tracking-wide text-gray-6 dark:text-dark-6">
-                      {row.currency} total
-                    </p>
-                    <p className="shrink-0 text-[15px] font-bold tracking-[-0.03em] text-dark dark:text-white">
-                      {formatLedgerAmount(row.balance_total, row.currency)}
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap justify-between gap-x-3 gap-y-0.5 text-[11px] text-gray-6 dark:text-dark-6">
-                    <span>
-                      Avail{" "}
-                      <span className="font-semibold text-dark dark:text-dark-5">
-                        {formatLedgerAmount(row.balance_available, row.currency)}
-                      </span>
-                    </span>
-                    <span>
-                      Locked{" "}
-                      <span className="font-semibold text-dark dark:text-dark-5">
-                        {formatLedgerAmount(row.balance_locked, row.currency)}
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <>
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-[11px] font-semibold uppercase tracking-wide text-gray-6 dark:text-dark-6">
-                    Total balance
-                  </p>
-                  <p className="shrink-0 text-[15px] font-bold tracking-[-0.03em] text-dark dark:text-white">
-                    {formatLedgerAmount(user?.balance_total, user?.balance_currency)}
-                  </p>
-                </div>
-                <div className="flex flex-wrap justify-between gap-x-3 gap-y-0.5 text-[11px] text-gray-6 dark:text-dark-6">
-                  <span>
-                    Avail{" "}
-                    <span className="font-semibold text-dark dark:text-dark-5">
-                      {formatLedgerAmount(user?.balance_available, user?.balance_currency)}
-                    </span>
-                  </span>
-                  <span>
-                    Locked{" "}
-                    <span className="font-semibold text-dark dark:text-dark-5">
-                      {formatLedgerAmount(user?.balance_locked, user?.balance_currency)}
-                    </span>
-                  </span>
-                </div>
-              </>
-            )}
-          </div>
+          <HeaderBalanceCard
+            balances={user?.balances}
+            balance_currency={user?.balance_currency}
+            balance_available={user?.balance_available}
+            balance_locked={user?.balance_locked}
+            balance_total={user?.balance_total}
+          />
         </div>
 
         <div className="flex flex-1 items-center justify-end gap-2 min-[375px]:gap-3 xl:flex-none">
