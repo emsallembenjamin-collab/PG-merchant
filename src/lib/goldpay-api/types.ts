@@ -25,6 +25,14 @@ export type SandboxOutcome =
   | "processing_then_failed";
 export type SandboxDeliveryMode = "direct" | "callback";
 
+/** Per-currency ledger row from `GET /merchants/me`. */
+export interface MerchantBalanceRow {
+  currency: string;
+  balance_available: number;
+  balance_locked: number;
+  balance_total: number;
+}
+
 export interface Merchant {
   id: number;
   name: string;
@@ -37,13 +45,15 @@ export interface Merchant {
   phone?: string | null;
   username?: string | null;
   bio?: string | null;
-  /** Internal ledger currency (ISO 4217). */
+  /** Balances per ISO 4217 currency (internal ledger). */
+  balances?: MerchantBalanceRow[];
+  /**
+   * Primary currency for backward compatibility (USD if present, else first by code).
+   * Flat amounts match this currency.
+   */
   balance_currency?: string;
-  /** Spendable balance (numeric from API). */
   balance_available?: number;
-  /** Reserved for in-flight withdrawals. */
   balance_locked?: number;
-  /** Available + locked. */
   balance_total?: number;
   created_at: string;
   updated_at: string;

@@ -50,6 +50,7 @@ export function Header() {
   const pathname = usePathname();
   const pageCopy =
     PAGE_COPY[pathname as keyof typeof PAGE_COPY] ?? PAGE_COPY["/"];
+  const balanceRows = user?.balances;
 
   return (
     <header className="sticky top-4 z-30 px-4 md:px-6 2xl:px-10">
@@ -78,29 +79,60 @@ export function Header() {
         </div>
 
         <div className="hidden flex-1 items-center justify-center xl:flex">
-          <div className="merchant-card flex min-w-[290px] max-w-md flex-col gap-0.5 px-4 py-2.5">
-            <div className="flex items-center justify-between gap-3">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-gray-6 dark:text-dark-6">
-                Total balance
-              </p>
-              <p className="shrink-0 text-[15px] font-bold tracking-[-0.03em] text-dark dark:text-white">
-                {formatLedger(user?.balance_total, user?.balance_currency)}
-              </p>
-            </div>
-            <div className="flex flex-wrap justify-between gap-x-3 gap-y-0.5 text-[11px] text-gray-6 dark:text-dark-6">
-              <span>
-                Avail{" "}
-                <span className="font-semibold text-dark dark:text-dark-5">
-                  {formatLedger(user?.balance_available, user?.balance_currency)}
-                </span>
-              </span>
-              <span>
-                Locked{" "}
-                <span className="font-semibold text-dark dark:text-dark-5">
-                  {formatLedger(user?.balance_locked, user?.balance_currency)}
-                </span>
-              </span>
-            </div>
+          <div className="merchant-card flex min-w-[290px] max-w-md flex-col gap-2 px-4 py-2.5">
+            {balanceRows && balanceRows.length > 0 ? (
+              balanceRows.map((row) => (
+                <div key={row.currency} className="flex flex-col gap-0.5 border-b border-stroke/40 pb-2 last:border-0 last:pb-0 dark:border-dark-3/60">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-[11px] font-semibold uppercase tracking-wide text-gray-6 dark:text-dark-6">
+                      {row.currency} total
+                    </p>
+                    <p className="shrink-0 text-[15px] font-bold tracking-[-0.03em] text-dark dark:text-white">
+                      {formatLedger(row.balance_total, row.currency)}
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap justify-between gap-x-3 gap-y-0.5 text-[11px] text-gray-6 dark:text-dark-6">
+                    <span>
+                      Avail{" "}
+                      <span className="font-semibold text-dark dark:text-dark-5">
+                        {formatLedger(row.balance_available, row.currency)}
+                      </span>
+                    </span>
+                    <span>
+                      Locked{" "}
+                      <span className="font-semibold text-dark dark:text-dark-5">
+                        {formatLedger(row.balance_locked, row.currency)}
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <>
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-wide text-gray-6 dark:text-dark-6">
+                    Total balance
+                  </p>
+                  <p className="shrink-0 text-[15px] font-bold tracking-[-0.03em] text-dark dark:text-white">
+                    {formatLedger(user?.balance_total, user?.balance_currency)}
+                  </p>
+                </div>
+                <div className="flex flex-wrap justify-between gap-x-3 gap-y-0.5 text-[11px] text-gray-6 dark:text-dark-6">
+                  <span>
+                    Avail{" "}
+                    <span className="font-semibold text-dark dark:text-dark-5">
+                      {formatLedger(user?.balance_available, user?.balance_currency)}
+                    </span>
+                  </span>
+                  <span>
+                    Locked{" "}
+                    <span className="font-semibold text-dark dark:text-dark-5">
+                      {formatLedger(user?.balance_locked, user?.balance_currency)}
+                    </span>
+                  </span>
+                </div>
+              </>
+            )}
           </div>
         </div>
 
