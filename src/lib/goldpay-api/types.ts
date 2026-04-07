@@ -281,3 +281,14 @@ export interface CreateFundingWithdrawalBody {
   idempotency_key?: string;
   metadata?: Record<string, unknown>;
 }
+
+/** `GET funding/vietnam-bank-codes` — Napas/BIN list for DPay payout (not DPay `bank_list`). */
+export type VietnamBankCodeRow = {
+  code: string;
+  full_name: string;
+  abbreviation: string;
+};
+
+export type VietnamBankCodesResponse = {
+  data: VietnamBankCodeRow[];
+};

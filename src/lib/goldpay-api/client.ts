@@ -6,6 +6,7 @@ import type {
   AssignProviderBody,
   CreateFundingDepositBody,
   CreateFundingWithdrawalBody,
+  VietnamBankCodesResponse,
   CreateTransactionBody,
   CreateMerchantBody,
   Merchant,
@@ -277,6 +278,10 @@ export const fundingApi = {
       method: "POST",
       body: JSON.stringify(body),
     }),
+
+  /** Vietnam Napas/BIN codes for withdrawals — use instead of `bankList` for payout `bank_name`. */
+  vietnamBankCodes: () =>
+    request<VietnamBankCodesResponse>(`funding/vietnam-bank-codes`),
 
   createDeposit: (body: CreateFundingDepositBody) =>
     request<TransactionDetails>(`funding/deposits`, {
