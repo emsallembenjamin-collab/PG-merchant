@@ -2,7 +2,7 @@
 
 import { ShowcaseSection } from "@/components/Layouts/showcase-section";
 import { useAuth } from "@/contexts/auth-context";
-import { formatLedgerAmount } from "@/lib/format-ledger";
+import { formatLedgerAmount, ledgerCurrencyBadge } from "@/lib/format-ledger";
 
 export function LedgerBalanceSection() {
   const { user } = useAuth();
@@ -17,13 +17,13 @@ export function LedgerBalanceSection() {
 
       {rows.length > 0 ? (
         <div className="space-y-3">
-          {rows.map((row) => (
+          {rows.map((row, i) => (
             <div
-              key={row.currency}
+              key={`${row.currency}-${i}`}
               className="rounded-[20px] border border-[#E8DED0] bg-[#FCFAF7] p-4 dark:border-dark-3 dark:bg-dark-2"
             >
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#8A7A61] dark:text-dark-6">
-                {row.currency}
+                {ledgerCurrencyBadge(row.currency)}
               </p>
               <p className="mt-2 text-lg font-bold text-dark dark:text-white">
                 {formatLedgerAmount(row.balance_total, row.currency)}
@@ -48,7 +48,7 @@ export function LedgerBalanceSection() {
       ) : (
         <div className="rounded-[20px] border border-[#E8DED0] bg-[#FCFAF7] p-4 dark:border-dark-3 dark:bg-dark-2">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#8A7A61] dark:text-dark-6">
-            {user?.balance_currency ?? "USD"} (summary)
+            {ledgerCurrencyBadge(user?.balance_currency)} (summary)
           </p>
           <p className="mt-2 text-lg font-bold text-dark dark:text-white">
             {formatLedgerAmount(user?.balance_total, user?.balance_currency)}
