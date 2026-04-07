@@ -85,7 +85,8 @@ export default function PayoutUrlPage() {
     );
   }
 
-  const bankName = metadata?.bank_name ?? metadata?.target_bank_name ?? null;
+  const bankName =
+    metadata?.bank_display_name ?? metadata?.bank_name ?? metadata?.target_bank_name ?? null;
   const bankNumber = metadata?.bank_number ?? metadata?.target_bank ?? null;
   const bankUser = metadata?.bank_user ?? metadata?.target_bank_user ?? null;
   const orderDate = metadata?.order_date ?? metadata?.order_time ?? null;

@@ -15,6 +15,8 @@ export default function PayoutCreatePage() {
     [],
   );
   const [selectedBankCode, setSelectedBankCode] = useState<string>("");
+  /** Beneficiary bank account number (DPay `target_bank`). */
+  const [accountNumber, setAccountNumber] = useState<string>("");
   const [accountName, setAccountName] = useState<string>("");
   const [loadingBanks, setLoadingBanks] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -80,26 +82,35 @@ export default function PayoutCreatePage() {
       return;
     }
 
+    if (!accountNumber.trim()) {
+      setError("Please enter the beneficiary bank account number.");
+      return;
+    }
+
     if (!accountName.trim()) {
       setError("Please enter the account holder name.");
       return;
     }
 
-    const bankName = selectedBank?.bank_name;
-    if (!bankName) {
+    if (!selectedBank) {
       setError("Selected bank is not available.");
       return;
     }
 
     setSubmitting(true);
     try {
+      const code = String(selectedBank.code);
       const resp = await goldpayApi.funding.createWithdrawal({
         amount: n,
         currency: "VND",
         metadata: {
-          target_bank: selectedBankCode,
-          bank_name: bankName,
-          target_bank_user: accountName,
+          // DPay: account number (not the bank list code).
+          target_bank: accountNumber.trim(),
+          // DPay: upstream bank/channel code from `/funding/bank-list` — NOT the display label (e.g. "ACB").
+          bank_name: code,
+          bank_code: code,
+          target_bank_user: accountName.trim(),
+          bank_display_name: selectedBank.bank_name,
         },
       });
 
@@ -147,6 +158,23 @@ export default function PayoutCreatePage() {
                 </option>
               ))}
             </select>
+            <p className="mt-1 text-xs text-dark-6">
+              DPay requires the list <span className="font-mono">code</span> as the bank field — not the short name alone.
+            </p>
+          </div>
+
+          <div>
+            <label className="merchant-label">Beneficiary account number</label>
+            <input
+              type="text"
+              inputMode="numeric"
+              value={accountNumber}
+              onChange={(e) => setAccountNumber(e.target.value)}
+              className="merchant-input"
+              placeholder="e.g. bank account number to receive"
+              disabled={loadingBanks || submitting}
+              autoComplete="off"
+            />
           </div>
 
           <div className="sm:col-span-2">
