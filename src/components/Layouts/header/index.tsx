@@ -10,7 +10,6 @@ import { MenuIcon } from "./icons";
 import { Notification } from "./notification";
 import { ThemeToggleSwitch } from "./theme-toggle";
 import { UserInfo } from "./user-info";
-import { HeaderBalanceCard } from "./header-balance";
 
 const PAGE_COPY = {
   "/": {
@@ -61,16 +60,6 @@ export function Header() {
           <p className="mt-1.5 text-[13px] font-medium tracking-[-0.01em] text-[#AEA39A] dark:text-dark-6">
             {pageCopy.subtitle}
           </p>
-        </div>
-
-        <div className="hidden flex-1 items-center justify-center xl:flex">
-          <HeaderBalanceCard
-            balances={user?.balances}
-            balance_currency={user?.balance_currency}
-            balance_available={user?.balance_available}
-            balance_locked={user?.balance_locked}
-            balance_total={user?.balance_total}
-          />
         </div>
 
         <div className="flex flex-1 items-center justify-end gap-2 min-[375px]:gap-3 xl:flex-none">
