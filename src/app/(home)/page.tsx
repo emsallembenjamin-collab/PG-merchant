@@ -15,13 +15,16 @@ export default async function Home({ searchParams }: PropsType) {
 
   return (
     <>
-      <MerchantVisualPanel variant="hero" />
 
-      <WalletCards />
+      {/* <MerchantVisualPanel variant="hero" /> */}
 
-      <Suspense fallback={<OverviewCardsSkeleton />}>
-        <OverviewCardsGroup />
-      </Suspense>
+    <div className="flex flex-col gap-10">
+        <WalletCards />
+
+        <Suspense fallback={<OverviewCardsSkeleton />}>
+          <OverviewCardsGroup />
+        </Suspense>
+    </div>
     </>
   );
 }
