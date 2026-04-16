@@ -8,18 +8,23 @@ function isAuthRoute(pathname: string | null) {
   return pathname?.startsWith("/auth") ?? false;
 }
 
+function isPublicPayRoute(pathname: string | null) {
+  return pathname?.startsWith("/pay/") ?? false;
+}
+
 export function AuthGate({ children }: PropsWithChildren) {
   const { isAuthenticated, isLoading } = useAuth();
   const pathname = usePathname();
   const router = useRouter();
   const onAuthRoute = isAuthRoute(pathname);
+  const onPublicPayRoute = isPublicPayRoute(pathname);
 
   useEffect(() => {
     if (isLoading) {
       return;
     }
 
-    if (!isAuthenticated && !onAuthRoute) {
+    if (!isAuthenticated && !onAuthRoute && !onPublicPayRoute) {
       router.replace("/auth/sign-in");
       return;
     }
@@ -27,7 +32,7 @@ export function AuthGate({ children }: PropsWithChildren) {
     if (isAuthenticated && onAuthRoute) {
       router.replace("/");
     }
-  }, [isAuthenticated, isLoading, onAuthRoute, router]);
+  }, [isAuthenticated, isLoading, onAuthRoute, onPublicPayRoute, router]);
 
   if (isLoading) {
     return (
@@ -39,7 +44,10 @@ export function AuthGate({ children }: PropsWithChildren) {
     );
   }
 
-  if ((!isAuthenticated && !onAuthRoute) || (isAuthenticated && onAuthRoute)) {
+  if (
+    (!isAuthenticated && !onAuthRoute && !onPublicPayRoute) ||
+    (isAuthenticated && onAuthRoute)
+  ) {
     return null;
   }
 

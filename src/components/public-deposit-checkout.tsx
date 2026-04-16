@@ -310,7 +310,7 @@ export function PublicDepositCheckout({
                   rel="noopener noreferrer"
                   className="text-sm font-semibold text-teal-600 underline hover:text-teal-700"
                 >
-                  Open provider payment page
+                  Open payment page
                 </a>
               </p>
             ) : null}
@@ -335,11 +335,6 @@ export function PublicDepositCheckout({
               >
                 {data.status}
               </div>
-              {data.provider?.display_name ? (
-                <span className="ml-2 text-gray-500">
-                  via {data.provider.display_name}
-                </span>
-              ) : null}
             </div>
 
             {data.provider_error && (
