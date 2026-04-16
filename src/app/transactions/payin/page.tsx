@@ -108,10 +108,10 @@ export default function PayinCreatePage() {
 
   return (
     <>
-      <Breadcrumb pageName="Payin URL" />
+      <Breadcrumb pageName="Create Deposit" />
       <div className="merchant-card p-6">
         <h3 className="mb-4 text-lg font-semibold text-dark dark:text-white">
-          Create Deposit (DPay)
+          Create Deposit
         </h3>
 
         <form onSubmit={submit} className="grid gap-4 sm:grid-cols-2">
@@ -177,7 +177,7 @@ export default function PayinCreatePage() {
         {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
 
         <p className="mt-4 text-sm text-dark-6">
-          After creation, you will be redirected to the Payin page for the transaction.
+          After creation, you will be redirected to the deposit details page for this transaction.
         </p>
 
         {selectedBank && (

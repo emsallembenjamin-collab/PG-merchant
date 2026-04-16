@@ -106,7 +106,7 @@ export default function PayinUrlPage() {
   if (loading && !tx) {
     return (
       <>
-        <Breadcrumb pageName="Payin URL" />
+        <Breadcrumb pageName="Deposit Details" />
         <div className="merchant-card p-8">
           <p className="text-dark-6">Loading...</p>
         </div>
@@ -117,7 +117,7 @@ export default function PayinUrlPage() {
   if (error && !tx) {
     return (
       <>
-        <Breadcrumb pageName="Payin URL" />
+        <Breadcrumb pageName="Deposit Details" />
         <div className="merchant-card p-8">
           <p className="text-red-500">{error}</p>
           <Link
@@ -135,7 +135,7 @@ export default function PayinUrlPage() {
   if (tx.type !== "deposit") {
     return (
       <>
-        <Breadcrumb pageName={`Payin URL for #${tx.id}`} />
+        <Breadcrumb pageName={`Deposit Details for #${tx.id}`} />
         <div className="merchant-card p-6">
           <p className="text-red-500">This transaction is not a deposit.</p>
           <div className="mt-4">
@@ -155,7 +155,7 @@ export default function PayinUrlPage() {
     <>
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <Breadcrumb pageName={`Payin URL for #${tx.id}`} />
+          <Breadcrumb pageName={`Deposit Details for #${tx.id}`} />
         </div>
         <Link
           href={`/transactions/${tx.id}`}

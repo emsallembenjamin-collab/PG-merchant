@@ -13,7 +13,7 @@ export default function PayoutCreatePage() {
     [],
   );
   const [selectedBankCode, setSelectedBankCode] = useState<string>("");
-  /** Beneficiary bank account number (DPay `target_bank`). */
+  /** Beneficiary bank account number sent to provider. */
   const [accountNumber, setAccountNumber] = useState<string>("");
   const [accountName, setAccountName] = useState<string>("");
   const [loadingBanks, setLoadingBanks] = useState(false);
@@ -103,7 +103,7 @@ export default function PayoutCreatePage() {
         currency: "VND",
         metadata: {
           target_bank: accountNumber.trim(),
-          /** Napas/BIN from `GET funding/vietnam-bank-codes` — DPay payout `bank_name`. */
+          /** Napas/BIN from `GET funding/vietnam-bank-codes` for provider mapping. */
           vietnam_bank_code: bin,
           bank_code: bin,
           bank_name: bin,
@@ -122,10 +122,10 @@ export default function PayoutCreatePage() {
 
   return (
     <>
-      <Breadcrumb pageName="Payout URL" />
+      <Breadcrumb pageName="Create Withdrawal" />
       <div className="merchant-card p-6">
         <h3 className="mb-4 text-lg font-semibold text-dark dark:text-white">
-          Create Withdrawal (DPay)
+          Create Withdrawal
         </h3>
 
         <form onSubmit={submit} className="grid gap-4 sm:grid-cols-2">
@@ -157,8 +157,7 @@ export default function PayoutCreatePage() {
               ))}
             </select>
             <p className="mt-1 text-xs text-dark-6">
-              Uses GoldPay <span className="font-mono">vietnam_bank_codes</span> (Napas/BIN), not DPay{" "}
-              <span className="font-mono">bank_list</span> channel codes.
+              Uses GoldPay <span className="font-mono">vietnam_bank_codes</span> (Napas/BIN) for bank mapping.
             </p>
           </div>
 
@@ -202,7 +201,7 @@ export default function PayoutCreatePage() {
         {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
 
         <p className="mt-4 text-sm text-dark-6">
-          After creation, you will be redirected to the Payout page for the transaction.
+          After creation, you will be redirected to the withdrawal details page for this transaction.
         </p>
 
         {selectedBank && (

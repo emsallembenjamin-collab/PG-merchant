@@ -19,8 +19,8 @@ export const NAV_DATA = [
         icon: Icons.Table,
         items: [
           { title: "Transactions", url: "/transactions" },
-          { title: "Payin URL", url: "/transactions/payin" },
-          { title: "Payout URL", url: "/transactions/payout" },
+          { title: "Create Deposit", url: "/transactions/payin" },
+          { title: "Create Withdrawal", url: "/transactions/payout" },
         ],
       },
       {

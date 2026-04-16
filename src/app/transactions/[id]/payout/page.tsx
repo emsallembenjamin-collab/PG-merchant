@@ -43,7 +43,7 @@ export default function PayoutUrlPage() {
   if (loading && !tx) {
     return (
       <>
-        <Breadcrumb pageName="Payout URL" />
+        <Breadcrumb pageName="Withdrawal Details" />
         <div className="merchant-card p-8">
           <p className="text-dark-6">Loading...</p>
         </div>
@@ -54,7 +54,7 @@ export default function PayoutUrlPage() {
   if (error && !tx) {
     return (
       <>
-        <Breadcrumb pageName="Payout URL" />
+        <Breadcrumb pageName="Withdrawal Details" />
         <div className="merchant-card p-8">
           <p className="text-red-500">{error}</p>
           <Link
@@ -72,7 +72,7 @@ export default function PayoutUrlPage() {
   if (tx.type !== "withdrawal") {
     return (
       <>
-        <Breadcrumb pageName={`Payout URL for #${tx.id}`} />
+        <Breadcrumb pageName={`Withdrawal Details for #${tx.id}`} />
         <div className="merchant-card p-6">
           <p className="text-red-500">This transaction is not a withdrawal.</p>
           <div className="mt-4">
@@ -97,7 +97,7 @@ export default function PayoutUrlPage() {
     <>
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <Breadcrumb pageName={`Payout URL for #${tx.id}`} />
+          <Breadcrumb pageName={`Withdrawal Details for #${tx.id}`} />
         </div>
         <Link href={`/transactions/${tx.id}`} className="font-semibold text-primary transition hover:opacity-80">
           ← Back to Transaction
@@ -107,7 +107,7 @@ export default function PayoutUrlPage() {
       <div className="space-y-6">
         <div className="merchant-card p-6">
           <h3 className="mb-4 text-lg font-semibold text-dark dark:text-white">
-            Payout / Withdrawal Details
+            Withdrawal Details
           </h3>
 
           {providerError && (

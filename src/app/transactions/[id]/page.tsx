@@ -218,7 +218,7 @@ export default function TransactionDetailPage() {
                 href={`/transactions/${tx.id}/payin`}
                 className="inline-block rounded px-4 py-2 font-semibold text-primary transition hover:opacity-80"
               >
-                Payin URL
+                Deposit Details
               </Link>
             )}
             {tx.type === "withdrawal" && (
@@ -226,7 +226,7 @@ export default function TransactionDetailPage() {
                 href={`/transactions/${tx.id}/payout`}
                 className="inline-block rounded px-4 py-2 font-semibold text-primary transition hover:opacity-80"
               >
-                Payout URL
+                Withdrawal Details
               </Link>
             )}
           </div>
